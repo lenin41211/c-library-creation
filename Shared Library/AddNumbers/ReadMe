@@ -1,0 +1,18 @@
+Dynamic or shared link library Creation :
+
+g++ -I ./inc -fpic -c AddNumbers/src/AddNumbers.cpp -o AddNumbers/obj/AddNumbers.o
+g++ -shared -o AddNumbers/lib/libAddNumbers.so AddNumbers/obj/AddNumbers.o
+
+Linked shared library with our code :
+
+g++ -I AddNumbers/inc -L AddNumbers/lib AddNumbers/src/main.cpp -lAddNumbers -o AddNumbers/bin/AddNumbersClient_shared
+sudo mv AddNumbers/lib/libAddNumbers.so /usr/local/lib
+LD_LIBRARY_PATH=Addnumbers/lib
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+OR
+export LD_LIBRARY_PATH=/usr/local/lib
+OR
+LD_LIBRARY_PATH=/usr/local/lib
+echo $LD_LIBRARY_PATH
+AddNumbers/bin/AddNumbersClient_shared 8 3
+output: 8 + 3 = 11

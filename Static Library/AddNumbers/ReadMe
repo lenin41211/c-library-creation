@@ -1,0 +1,12 @@
+Static libraty Creation : 
+
+g++ -I ./inc -c AddNumbers/src/AddNumbers.cpp -o AddNumbers/obj/AddNumbers.o
+ar rcs AddNumbers/lib/libAddNumbers.a AddNumbers/obj/AddNumbers.o
+
+
+Linking the static library with our code:
+
+g++ -I AddNumbers/inc -L AddNumbers/lib -static AddNumbers/src/main.cpp -lAddNumbers -o AddNumbers/bin/AddNumbersClient_static
+AddNumbers/bin/AddNumbersClient_static 5 2
+
+output : 5 + 2 = 7
